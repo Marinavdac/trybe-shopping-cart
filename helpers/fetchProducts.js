@@ -4,7 +4,7 @@ const fetchProducts = async () => {
   try {
     const result = await fetch(url);
     const data = await result.json();
-    console.log(data.results);
+    
     return data.results;
   } catch (error) {
     console.log(`Algo deu errado :( \n${error}`);
