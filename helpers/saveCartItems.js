@@ -1,7 +1,7 @@
-const saveCartItems = (cartItem) => {
+const saveCartItems = (id) => {
   const locStorage = JSON.parse(localStorage.getItem('cartItems')) || [];
-  
-  locStorage.push(cartItem);  
+
+  locStorage.push(id);
   
   const saved = localStorage.setItem('cartItems', JSON.stringify(locStorage));
   

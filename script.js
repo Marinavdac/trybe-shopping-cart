@@ -11,6 +11,7 @@ const shopCart = document.querySelector('.cart__items');
 const resetCart = document.querySelector('.empty-cart');
 resetCart.addEventListener('click', () => {
   shopCart.innerHTML = '';
+  localStorage.clear();
 });
 
 function createCustomElement(element, className, innerText) {
@@ -37,16 +38,9 @@ function createProductItemElement({ sku, name, image, salePrice }) {
 // }
 
 function cartItemClickListener(event) {
-  event.target.remove();
-}
-
-function createCartItemElement({ id: sku, title: name, price: salePrice }) {
-  const li = document.createElement('li');
-  createCustomElement('span', 'span.item__sku');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
+  event.target.parentNode.remove();
+  // console.log((event.target.parentNode.firstChild.innerText))
+  // localStorage.removeItem.find(event.target.parentNode.firstChild.innerText);
 }
 
 function formatNumber(number) {
@@ -54,20 +48,25 @@ function formatNumber(number) {
     { style: 'currency', currency: 'BRL', minimunSignificantDigits: 2 }).format(number);
 }
 
+function createCartItemElement({ thumbnail: image, id: sku, title: name, price: salePrice }) {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.appendChild(createProductImageElement(image));
+  li.appendChild(createCustomElement('span', 'item__sku', sku));
+  li.appendChild(createCustomElement('span', 'item__title', name));
+  li.appendChild(createCustomElement('button', 'item__remove', 'x'))
+    .addEventListener('click', cartItemClickListener);
+  li.appendChild(createCustomElement('span', 'item__price', `${formatNumber(salePrice)}`));
+  return li;
+}
+
 const listaPai = document.getElementsByClassName('items')[0];
 
 async function addToCart(event) {
-  // const priceEl = event.target.previousSibling;
-  // const nameEl = priceEl.previousSibling;
-  // const idEl = nameEl.previousSibling.previousSibling;
-  // const newItemList = {
-  //   sku: idEl.innerText,
-  //   name: nameEl.innerText,
-  //   salePrice: priceEl.innerText,
-  // };
   const newItemList = await fetchItem(event.target.parentNode.firstChild.innerText);
-  const { id, title, price } = newItemList;
-  const newCartItem = createCartItemElement({ id, title, price });
+  const { thumbnail, id, title, price } = newItemList;
+  const newCartItem = createCartItemElement({ thumbnail, id, title, price });
+  saveCartItems({ thumbnail, id, title, price });
   cartList.appendChild(newCartItem);
 }
 
