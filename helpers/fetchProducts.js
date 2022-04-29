@@ -2,9 +2,8 @@ const fetchProducts = async () => {
   const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
    
   try {
-    const result = await fetch(url);
-    const data = await result.json();
-    
+    const results = await fetch(url);
+    const data = await results.json();
     return data.results;
   } catch (error) {
     console.log(`Algo deu errado :( \n${error}`);

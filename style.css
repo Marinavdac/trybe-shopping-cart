@@ -155,3 +155,26 @@ body {
   border: 2px solid rgb(5, 52, 219);
   background-color: rgb(249, 249, 246);
 }
+
+.loading {
+  position: absolute;
+  bottom: 350px;
+  border: 16px solid rgb(243, 243, 243);
+  border-radius: 50%;
+  border-top: 16px solid  rgb(10, 118, 79);
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

@@ -1,4 +1,4 @@
- const cartList = document.getElementsByClassName('cart__items')[0];
+const cartList = document.getElementsByClassName('cart__items')[0];
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -71,8 +71,18 @@ async function addToCart(event) {
   cartList.appendChild(newCartItem);
 }
 
+function createLoader() {
+  const section = document.createElement('section');
+  section.className = 'container';
+  section.appendChild(createCustomElement('section', 'loading', ' '));
+  return section;
+}
+
 window.onload = async () => {
+  const loader = createLoader();
+  listaPai.appendChild(loader);
   const result = await fetchProducts();
+  listaPai.removeChild(loader);
   const productList = result.map((element) => {
   const { id, title, thumbnail, price } = element;
     const product = {
