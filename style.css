@@ -152,10 +152,11 @@ li .item__sku , .item .item__sku {
   margin: 1rem;
   list-style: none;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  vertical-align: middle;
+  flex-direction: row-reverse;
   justify-content: space-between;
+  align-items: center;
+  vertical-align: middle;
+  text-align: left;
 }
 
 .cart__item img {
@@ -164,25 +165,14 @@ li .item__sku , .item .item__sku {
   border-radius: 50%;
 }
 
-.cart__item .item__title {
-  width: 14rem;
-  text-align: justify;
-}
-
 .item__remove {
-  background-color: white;
+  background-color: transparent;
+  border: transparent;
   font-weight: 700;
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
+  font-size: 1rem;
+  order: -1;
   cursor: pointer;
-  align-items: flex-end;
-}
-
-.cart__item .item__price {
-  color: red;
-  align-self: flex-end;
-  margin-left: 8rem;
+  text-align: center;
 }
 
 .subtotal {

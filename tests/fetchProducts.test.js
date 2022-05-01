@@ -7,7 +7,7 @@ describe('1 - Teste a função fecthProducts', () => {
     expect(typeof fetchProducts).toBe('function');
   });
   test('Verifica se a fetch API é chamada quando a função fetchProducts é chamada com o parâmetro "computador"', async () => {
-    const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
+    const url = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
     const data = await fetchProducts('computador');
     expect.assertions(1);
     expect(url).toHaveBeenCalledWith(data);
