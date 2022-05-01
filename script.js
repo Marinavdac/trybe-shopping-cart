@@ -1,6 +1,6 @@
 const cartList = document.getElementsByClassName('cart__items')[0];
 const subtotal = document.getElementsByClassName('total-price')[0];
-let subTotal = [];
+const subTotal = [];
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -63,9 +63,8 @@ function getSubtotal(price) {
 function updateCartValues(event) {
   const value = event.innerText.slice(event.innerText.indexOf('$'), (event.innerText).length)
   .split('$');
-  const salePrice = parseFloat(value[1]);
-  const result = subTotal.filter((number) => (number !== salePrice));  
-  subTotal = result;  
+  const salePrice = parseFloat(value[1]);  
+  subTotal.splice(subTotal.indexOf(salePrice), 1);   
   getSubtotal();
 }
 
