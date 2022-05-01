@@ -1,12 +1,16 @@
-const fetchProducts = async () => {
-  const url = 'https://api.mercadolibre.com/sites/MLB/search?q=computador';
+const fetchProducts = async (query) => {
+  const url = `https://api.mercadolibre.com/sites/MLB/search?q=${query}`;
    
   try {
     const results = await fetch(url);
     const data = await results.json();
-    return data.results;
+  
+    if (!query) {
+      throw new Error('You must provide an url');
+    }
+    return data;
   } catch (error) {
-    console.log(`Algo deu errado :( \n${error}`);
+    console.log(`Algo deu errado :( \n${error.message}`);
   }
 };
 

@@ -117,9 +117,9 @@ window.onload = async () => {
   loadSaved();
   const loader = createLoader();
   listaPai.appendChild(loader);
-  const result = await fetchProducts();
+  const data = await fetchProducts('computador');
   listaPai.removeChild(loader);
-  const productList = result.map((element) => {
+  const productList = data.results.map((element) => {
   const { id, title, thumbnail, price } = element;
     const product = { sku: id, name: title, image: thumbnail, salePrice: `${formatNumber(price)}`,
     };
