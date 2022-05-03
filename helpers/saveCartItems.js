@@ -4,7 +4,7 @@ const saveCartItems = (id) => {
   locStorage.push(id);
   
   const saved = localStorage.setItem('cartItems', JSON.stringify(locStorage));
-  
+
   return saved;
 };
 
